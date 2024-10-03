@@ -1,5 +1,6 @@
 import { CreateProductDto } from '../application/dto/create-product.dto';
 import { ProductResponseDto } from '../application/dto/product-response.dto';
+import { IProductDeleteResponse } from '../application/interfaces/product.repository.interfaces';
 import { ProductService } from '../application/service/product.service';
 import { Product } from '../domain/product.entity';
 import {
@@ -47,7 +48,9 @@ export class ProductController {
   }
 
   @Delete(':id')
-  async deleteOneOrFail(@Param('id') id: number): Promise<void> {
+  async deleteOneOrFail(
+    @Param('id') id: number,
+  ): Promise<IProductDeleteResponse> {
     return await this.productService.deleteOneOrFail(id);
   }
 }

@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { IProductService } from '../interfaces/product.service.interfaces';
 import { Product } from '../../domain/product.entity';
 import {
+  IProductDeleteResponse,
   IProductRepository,
   PRODUCT_REPOSITORY_KEY,
 } from '../interfaces/product.repository.interfaces';
@@ -28,7 +29,7 @@ export class ProductService implements IProductService {
     if (!product) {
       throw new HttpException(PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND);
     }
-    return this.productMapper.fromBookToProductResponseDto(product);
+    return this.productMapper.fromProductToProductResponseDto(product);
   }
 
   async getOneByName(name: string): Promise<ProductResponseDto> {
@@ -36,7 +37,7 @@ export class ProductService implements IProductService {
     if (!product) {
       throw new HttpException(PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND);
     }
-    return this.productMapper.fromBookToProductResponseDto(product);
+    return this.productMapper.fromProductToProductResponseDto(product);
   }
 
   async saveOne(
@@ -45,7 +46,7 @@ export class ProductService implements IProductService {
     const product = await this.productRepository.saveOne(
       this.productMapper.fromCreateProductDtoToProduct(createProductDto),
     );
-    return this.productMapper.fromBookToProductResponseDto(product);
+    return this.productMapper.fromProductToProductResponseDto(product);
   }
 
   async updateOneOrFail(
@@ -62,12 +63,7 @@ export class ProductService implements IProductService {
     return this.productMapper.fromUpdateProductDtoToProduct(product);
   }
 
-  async deleteOneOrFail(id: number): Promise<void> {
-    await this.productRepository.deleteOneOrFail(id);
-
-    if (await this.getOneById(id)) {
-      throw new HttpException(PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND);
-    }
-    return;
+  async deleteOneOrFail(id: number): Promise<IProductDeleteResponse> {
+    return await this.productRepository.deleteOneOrFail(id);
   }
 }

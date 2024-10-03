@@ -2,7 +2,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from '../../domain/product.entity';
 import { ProductSchema } from './product.schema';
-import { IProductRepository } from '../../application/interfaces/product.repository.interfaces';
+import {
+  IProductDeleteResponse,
+  IProductRepository,
+} from '../../application/interfaces/product.repository.interfaces';
 import { HttpException } from '@nestjs/common';
 
 export class ProductMysqlRepository implements IProductRepository {
@@ -43,7 +46,25 @@ export class ProductMysqlRepository implements IProductRepository {
     return this.productRepository.save(productToUpdate);
   }
 
-  async deleteOneOrFail(id: number): Promise<void> {
-    this.productRepository.delete(id);
+  async deleteOneOrFail(id: number): Promise<IProductDeleteResponse> {
+    const productToDelete = await this.productRepository.findOne({
+      where: { id },
+    });
+
+    if (!productToDelete) {
+      throw new HttpException(`Category with ID ${id} not found`, 404);
+    }
+
+    const result = await this.productRepository.softDelete(id);
+
+    if (result.affected === 1) {
+      return {
+        message: 'Product successfully deleted',
+        success: true,
+        statusCode: 200,
+      };
+    } else {
+      throw new HttpException('Failed to delete the product', 500);
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Product } from '../../domain/product.entity';
 import { ProductResponseDto } from '../dto/product-response.dto';
 import { IUpdateProductDto } from '../dto/update-product.dto';
+import { IProductDeleteResponse } from './product.repository.interfaces';
 
 export interface IProductService {
   getAll(): Promise<Product[]>;
@@ -11,5 +12,5 @@ export interface IProductService {
     id: number,
     updateProductDto: IUpdateProductDto,
   ): Promise<ProductResponseDto>;
-  deleteOneOrFail(id: number): Promise<void>;
+  deleteOneOrFail(id: number): Promise<IProductDeleteResponse>;
 }

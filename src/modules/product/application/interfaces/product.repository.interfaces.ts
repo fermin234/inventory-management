@@ -11,5 +11,11 @@ export interface IProductRepository {
     id: number,
     updates: Partial<Omit<Product, 'id'>>,
   ): Promise<Product>;
-  deleteOneOrFail(id: number): Promise<void>;
+  deleteOneOrFail(id: number): Promise<IProductDeleteResponse>;
+}
+
+export interface IProductDeleteResponse {
+  message: string;
+  success: boolean;
+  statusCode: number;
 }

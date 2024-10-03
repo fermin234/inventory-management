@@ -27,7 +27,7 @@ export class ProductMapper {
     return product;
   }
 
-  fromBookToProductResponseDto(product: Product): ProductResponseDto {
+  fromProductToProductResponseDto(product: Product): ProductResponseDto {
     const productResponseDto = new ProductResponseDto();
     productResponseDto.id = product.id;
     productResponseDto.name = product.name;
