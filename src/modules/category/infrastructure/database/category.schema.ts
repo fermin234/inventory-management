@@ -7,7 +7,7 @@ import { Category } from '../../domain/category.entity';
 export const CategorySchema = new EntitySchema<Category>({
   name: 'Category',
   target: Category,
-  tableName: 'pategory',
+  tableName: 'category',
   columns: withBaseSchemaColumns({
     name: {
       type: String,

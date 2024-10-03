@@ -19,7 +19,10 @@ export class ProductMysqlRepository implements IProductRepository {
   }
 
   async getOneById(id: number): Promise<Product> {
-    return await this.productRepository.findOneBy({ id });
+    return await this.productRepository.findOne({
+      where: { id },
+      relations: ['categoryId'],
+    });
   }
 
   async getOneByName(name: string): Promise<Product> {
