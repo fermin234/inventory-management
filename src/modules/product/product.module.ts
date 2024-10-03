@@ -1,0 +1,22 @@
+import { Module } from '@nestjs/common';
+import { ProductController } from './interface/product.controller';
+import { ProductService } from './application/service/product.service';
+import { ProductMysqlRepository } from './infrastructure/database/product.mysql.repository';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductSchema } from './infrastructure/database/product.schema';
+import { PRODUCT_REPOSITORY_KEY } from './application/interfaces/product.repository.interfaces';
+import { ProductMapper } from './application/mapper/product.mapper';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([ProductSchema])],
+  controllers: [ProductController],
+  providers: [
+    ProductService,
+    {
+      provide: PRODUCT_REPOSITORY_KEY,
+      useClass: ProductMysqlRepository,
+    },
+    ProductMapper,
+  ],
+})
+export class ProductModule {}
