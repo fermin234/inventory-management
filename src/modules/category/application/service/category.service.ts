@@ -9,7 +9,6 @@ import { CategoryMapper } from '../mapper/category.mapper';
 import { Category } from '../../domain/category.entity';
 import { CategoryResponseDto } from '../dto/category-response.dto';
 import { CATEGORY_NOT_FOUND } from '../exception/category.exeption';
-import { ICreateCategorytDto } from '../dto/create-category.dto.interface';
 import { IUpdateCategoryDto } from '../dto/update-category.dto';
 import { CreateCategorytDto } from '../dto/create-category.dto';
 

@@ -52,7 +52,7 @@ export class ProductMysqlRepository implements IProductRepository {
     });
 
     if (!productToDelete) {
-      throw new HttpException(`Category with ID ${id} not found`, 404);
+      throw new HttpException(`Product with ID ${id} not found`, 404);
     }
 
     const result = await this.productRepository.softDelete(id);

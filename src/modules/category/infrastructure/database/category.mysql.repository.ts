@@ -59,7 +59,7 @@ export class CategoryMysqlRepository implements ICategoryRepository {
 
     if (result.affected === 1) {
       return {
-        message: 'Product successfully deleted',
+        message: 'Category successfully deleted',
         success: true,
         statusCode: 200,
       };
