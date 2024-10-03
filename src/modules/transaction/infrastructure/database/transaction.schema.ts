@@ -25,4 +25,10 @@ export const TransactionSchema = new EntitySchema<Transaction>({
       type: String,
     },
   }),
+  relations: {
+    productId: {
+      type: 'many-to-one',
+      target: 'Product',
+    },
+  },
 });

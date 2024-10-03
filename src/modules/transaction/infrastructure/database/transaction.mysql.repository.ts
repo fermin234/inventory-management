@@ -19,7 +19,10 @@ export class TransactionMysqlRepository implements ITransactionRepository {
   }
 
   async getOneById(id: number): Promise<Transaction> {
-    return await this.transactionRepository.findOneBy({ id });
+    return await this.transactionRepository.findOne({
+      where: { id },
+      relations: ['productId'],
+    });
   }
 
   async getOneByName(name: string): Promise<Transaction> {

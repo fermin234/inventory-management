@@ -1,3 +1,4 @@
+import { Transaction } from '@/modules/transaction/domain/transaction.entity';
 import { Base } from '@common/base/domain/base.entity';
 
 export class Product extends Base {
@@ -6,4 +7,6 @@ export class Product extends Base {
   price: number;
   stock: number;
   categoryId: number;
+
+  transactions?: Transaction[];
 }

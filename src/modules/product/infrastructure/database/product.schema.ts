@@ -32,5 +32,9 @@ export const ProductSchema = new EntitySchema<Product>({
       target: 'Category',
       joinColumn: { name: 'categoryId' },
     },
+    transactions: {
+      type: 'one-to-many',
+      target: 'Transaction',
+    },
   },
 });
