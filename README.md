@@ -63,6 +63,8 @@ Cada transacción afecta el inventario, asegurando que no se pueda registrar una
    npm run start:dev
    ```
 
+6. Importar la colección de Postman (opcional). [Colección aquí](#cómo-utilizar-la-colección-en-postman)
+
 ## Uso
 
 Después de haber instalado las dependencias y configurado el entorno, puedes probar los siguientes endpoints para gestionar productos, categorías y transacciones.
@@ -101,3 +103,18 @@ Después de haber instalado las dependencias y configurado el entorno, puedes pr
 
 - El precio debe ser un número positivo.
 - La cantidad de stock debe ser un número entero no negativo.
+
+## Colección de Postman
+
+Dentro de la carpeta `postman`, encontrarás una colección de todos los endpoints para poder probar la aplicación. Puedes importarla en Postman para facilitar la interacción con la API.
+
+### Cómo utilizar la colección en Postman
+
+1. **Abrir Postman**: Asegúrate de tener la aplicación Postman instalada en tu computadora. Si no la tienes, puedes descargarla desde [aquí](https://www.postman.com/downloads/).
+
+2. **Importar la colección**:
+   - Abre Postman y dirígete a la pestaña "Collections" en el panel izquierdo.
+   - Haz clic en el botón "Import" (importar).
+   - Selecciona la opción "Upload Files" (subir archivos).
+   - Busca y selecciona el archivo `InventoryManagement.postman_collection.json` que se encuentra dentro de la carpeta `postman` de tu proyecto.
+   - Haz clic en "Open" (abrir) para importar la colección.
