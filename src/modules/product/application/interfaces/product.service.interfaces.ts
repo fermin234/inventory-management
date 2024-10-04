@@ -5,6 +5,7 @@ import { IProductDeleteResponse } from './product.repository.interfaces';
 
 export interface IProductService {
   getAll(): Promise<Product[]>;
+  generateReport(): Promise<Product[]>;
   getOneById(id: number): Promise<ProductResponseDto>;
   getOneByName(name: string): Promise<ProductResponseDto>;
   saveOne(product: Product): Promise<ProductResponseDto>;

@@ -23,6 +23,11 @@ export class ProductController {
     return await this.productService.getAll();
   }
 
+  @Get('report')
+  async generateReport(): Promise<Product[]> {
+    return await this.productService.generateReport();
+  }
+
   @Get(':id')
   async getOneById(@Param('id') id: number): Promise<ProductResponseDto> {
     return await this.productService.getOneById(id);

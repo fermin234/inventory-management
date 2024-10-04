@@ -24,6 +24,10 @@ export class ProductService implements IProductService {
     return await this.productRepository.getAll();
   }
 
+  async generateReport(): Promise<Product[]> {
+    return await this.productRepository.generateReport();
+  }
+
   async getOneById(id: number): Promise<ProductResponseDto> {
     const product = await this.productRepository.getOneById(id);
     if (!product) {

@@ -4,6 +4,7 @@ export const PRODUCT_REPOSITORY_KEY = 'product_repository';
 
 export interface IProductRepository {
   getAll(): Promise<Product[]>;
+  generateReport(): Promise<Product[]>;
   getOneById(id: number): Promise<Product>;
   getOneByName(name: string): Promise<Product>;
   saveOne(product: Product): Promise<Product>;

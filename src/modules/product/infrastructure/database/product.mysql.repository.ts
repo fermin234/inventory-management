@@ -20,6 +20,13 @@ export class ProductMysqlRepository implements IProductRepository {
     });
   }
 
+  async generateReport(): Promise<Product[]> {
+    return await this.productRepository.find({
+      relations: ['categoryId'],
+      order: { stock: 'ASC' },
+    });
+  }
+
   async getOneById(id: number): Promise<Product> {
     return await this.productRepository.findOne({
       where: { id },
