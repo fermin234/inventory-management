@@ -1,85 +1,103 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Inventory Management
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este proyecto es un sistema de gestión de inventario para una empresa, desarrollado como parte de una prueba técnica para la posición de Desarrollador Backend. El sistema permite manejar productos, categorías y transacciones de inventario, registrando entradas y salidas de stock
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tabla de Contenidos
 
-## Description
+- [Descripción General](#descripción-general)
+- [Requisitos del Sistema](#requisitos-del-sistema)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [API Endpoints](#api-endpoints)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Descripción General
 
-## Project setup
+El sistema de gestión de inventario maneja tres módulos principales:
 
-```bash
-$ npm install
-```
+- **Producto**: Almacena información sobre cada producto, incluyendo su stock y categoría.
+- **Categoría**: Clasifica los productos en diferentes grupos.
+- **Transacción**: Registra entradas y salidas de stock, lo que permite llevar un seguimiento preciso de la cantidad disponible de cada producto.
 
-## Compile and run the project
+Cada transacción afecta el inventario, asegurando que no se pueda registrar una salida de stock si no hay suficientes productos disponibles.
 
-```bash
-# development
-$ npm run start
+## Requisitos del Sistema
 
-# watch mode
-$ npm run start:dev
+- Node.js v20 o superior
+- Docker
 
-# production mode
-$ npm run start:prod
-```
+## Tecnologías Utilizadas
 
-## Run tests
+- **Backend**: NestJS con TypeScript
+- **Base de Datos**: MySQL
+- **ORM**: TypeORM
+- **Contenedores**: Docker
+- **Autenticación**: No implementada en esta versión
 
-```bash
-# unit tests
-$ npm run test
+## Instalación
 
-# e2e tests
-$ npm run test:e2e
+1. Clonar el repositorio:
 
-# test coverage
-$ npm run test:cov
-```
+   ```bash
+   git clone https://github.com/tuusuario/inventory-management.git
+   cd inventory-management
+   ```
 
-## Resources
+2. Instalar las dependencias:
 
-Check out a few resources that may come in handy when working with NestJS:
+   ```bash
+   npm install
+   ```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+3. Configurar las variables de entorno en un archivo .env basado en .env.dist. Asegúrate de configurar correctamente la conexión a la base de datos.
 
-## Support
+4. (Opcional) Iniciar la base de datos con Docker:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   ```bash
+   docker-compose up -d
+   ```
 
-## Stay in touch
+5. Iniciar la aplicación:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+   ```bash
+   npm run start:dev
+   ```
 
-## License
+## Uso
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Después de haber instalado las dependencias y configurado el entorno, puedes probar los siguientes endpoints para gestionar productos, categorías y transacciones.
+
+### API Endpoints
+
+#### Productos
+
+- `GET /product` - Obtener todos los productos.
+- `GET /product/report` - Obtener el reporte de todos los productos ordenados de menos a mayor segun su STOCK.
+- `GET /product/{id}` - Obtener un producto específico.
+- `GET /product/name/{name}` - Obtener un producto específico segun su nombre.
+- `POST /product` - Crear un nuevo producto.
+- `PUT /product/{id}` - Actualizar un producto existente.
+- `DELETE /product/{id}` - Eliminar un producto (soft delete).
+
+#### Categorías
+
+- `GET /category` - Obtener todas las categorías.
+- `GET /category/{id}` - Obtener una categoría en específico.
+- `GET /category/name/{name}` - Obtener una categoría en específico segun su nombre..
+- `POST /category` - Crear una nueva categoría.
+- `PUT /category/{id}` - Actualizar una categoría.
+- `Delete /category/{id}` - Eliminar una categoría
+
+#### Transacciones
+
+- `GET /transaction` - Obtener todas las transacciones.
+- `GET /transaction/{id}` - Obtener una transaccion.
+- `GET /transaction/name/{name}` - Obtener una transaccion segun el nombre.
+- `POST /transactions` - Registrar una transacción de entrada o salida de stock. Asegura que no se registren salidas si no hay stock suficiente.
+- `PUT /transaction/{id}/` - Actualizar una transaccion.
+- `DELETE /transaction/{id}` - Eliminar una transaccion.
+
+### Validaciones
+
+- El precio debe ser un número positivo.
+- La cantidad de stock debe ser un número entero no negativo.
