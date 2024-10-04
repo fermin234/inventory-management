@@ -6,9 +6,10 @@ import { TransactionMysqlRepository } from './infrastructure/database/transactio
 import { TransactionMapper } from './application/mapper/transaction.mapper';
 import { TransactionSchema } from './infrastructure/database/transaction.schema';
 import { TRANSACTION_REPOSITORY_KEY } from './application/interfaces/transaction.repository.interfaces';
+import { ProductModule } from '../product/product.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TransactionSchema])],
+  imports: [TypeOrmModule.forFeature([TransactionSchema]), ProductModule],
   controllers: [TransactionController],
   providers: [
     TransactionService,

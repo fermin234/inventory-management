@@ -1,5 +1,6 @@
 import { CreateProductDto } from '../application/dto/create-product.dto';
 import { ProductResponseDto } from '../application/dto/product-response.dto';
+import { IUpdateProductDto } from '../application/dto/update-product.dto';
 import { IProductDeleteResponse } from '../application/interfaces/product.repository.interfaces';
 import { ProductService } from '../application/service/product.service';
 import { Product } from '../domain/product.entity';
@@ -42,7 +43,7 @@ export class ProductController {
   @Put(':id')
   async updateOneOrFail(
     @Param('id') id: number,
-    @Body() updateProductDto: CreateProductDto,
+    @Body() updateProductDto: IUpdateProductDto,
   ): Promise<ProductResponseDto> {
     return await this.productService.updateOneOrFail(id, updateProductDto);
   }

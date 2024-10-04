@@ -15,13 +15,14 @@ export class ProductMysqlRepository implements IProductRepository {
   ) {}
 
   async getAll(): Promise<Product[]> {
-    return await this.productRepository.find();
+    return await this.productRepository.find({
+      relations: ['categoryId'],
+    });
   }
 
   async getOneById(id: number): Promise<Product> {
     return await this.productRepository.findOne({
       where: { id },
-      relations: ['categoryId'],
     });
   }
 

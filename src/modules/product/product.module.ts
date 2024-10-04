@@ -18,5 +18,6 @@ import { ProductMapper } from './application/mapper/product.mapper';
     },
     ProductMapper,
   ],
+  exports: [ProductService],
 })
 export class ProductModule {}
