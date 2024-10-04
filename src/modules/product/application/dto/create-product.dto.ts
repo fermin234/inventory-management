@@ -1,5 +1,13 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  IsString,
+  Min,
+} from 'class-validator';
 import { ICreateProductDto } from './create-product.dto.interface';
 
 export class CreateProductDto implements ICreateProductDto {
@@ -16,11 +24,14 @@ export class CreateProductDto implements ICreateProductDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
+  @IsPositive()
   price: number;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
+  @IsInt()
+  @Min(0)
   stock: number;
 
   @ApiProperty()
