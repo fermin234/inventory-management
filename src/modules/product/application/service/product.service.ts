@@ -11,6 +11,7 @@ import { ProductMapper } from '../mapper/product.mapper';
 import { ProductResponseDto } from '../dto/product-response.dto';
 import { IUpdateProductDto } from '../dto/update-product.dto';
 import { PRODUCT_NOT_FOUND } from '../exception/product.exeption';
+import { CategoryService } from '@/modules/category/application/service/category.service';
 
 @Injectable()
 export class ProductService implements IProductService {
@@ -18,6 +19,8 @@ export class ProductService implements IProductService {
     @Inject(PRODUCT_REPOSITORY_KEY)
     private readonly productRepository: IProductRepository,
     private readonly productMapper: ProductMapper,
+    @Inject(CategoryService)
+    private readonly categoryService: CategoryService,
   ) {}
 
   async getAll(): Promise<Product[]> {
@@ -47,6 +50,8 @@ export class ProductService implements IProductService {
   async saveOne(
     createProductDto: CreateProductDto,
   ): Promise<ProductResponseDto> {
+    await this.categoryService.getOneById(createProductDto.categoryId);
+
     const product = await this.productRepository.saveOne(
       this.productMapper.fromCreateProductDtoToProduct(createProductDto),
     );

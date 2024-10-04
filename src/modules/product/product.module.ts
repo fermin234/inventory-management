@@ -6,9 +6,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductSchema } from './infrastructure/database/product.schema';
 import { PRODUCT_REPOSITORY_KEY } from './application/interfaces/product.repository.interfaces';
 import { ProductMapper } from './application/mapper/product.mapper';
+import { CategoryModule } from '../category/category.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProductSchema])],
+  imports: [TypeOrmModule.forFeature([ProductSchema]), CategoryModule],
   controllers: [ProductController],
   providers: [
     ProductService,

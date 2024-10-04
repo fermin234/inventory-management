@@ -18,5 +18,6 @@ import { CategorySchema } from './infrastructure/database/category.schema';
     },
     CategoryMapper,
   ],
+  exports: [CategoryService],
 })
 export class CategoryModule {}
